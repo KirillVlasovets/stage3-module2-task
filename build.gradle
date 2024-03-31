@@ -28,6 +28,12 @@ subprojects {
 
         annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
         implementation "org.mapstruct:mapstruct:$mapstructVersion"
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+        implementation "javax.persistence:javax.persistence-api:2.2"
+        implementation "org.mapstruct:mapstruct:1.5.5.Final"
+        implementation "org.mapstruct:mapstruct-processor:1.5.5.Final"
     }
     test {
         useJUnitPlatform()
