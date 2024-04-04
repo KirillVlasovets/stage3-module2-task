@@ -1,19 +1,24 @@
 package com.mjc.school.controller.invoker;
 
-import com.mjc.school.controller.BaseController;
 import com.mjc.school.controller.constants.MenuConstants;
+import com.mjc.school.controller.implementation.AuthorController;
 import com.mjc.school.controller.utils.ScanUtils;
 import com.mjc.school.service.dto.AuthorDtoRequest;
-import com.mjc.school.service.dto.AuthorDtoResponse;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@AllArgsConstructor
+@Component
 public class AuthorControllerInvoker {
 
-    private final BaseController<AuthorDtoRequest, AuthorDtoResponse, Long> controller;
-    private final Scanner scanner;
+    private final AuthorController controller;
+    private final Scanner scanner = new Scanner(System.in);
+
+    @Autowired
+    public AuthorControllerInvoker(AuthorController controller) {
+        this.controller = controller;
+    }
 
     public void createAuthor() {
         System.out.println(MenuConstants.CREATE_AUTHOR_TEXT);

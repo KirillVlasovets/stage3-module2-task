@@ -1,19 +1,24 @@
 package com.mjc.school.controller.invoker;
 
-import com.mjc.school.controller.BaseController;
 import com.mjc.school.controller.constants.MenuConstants;
+import com.mjc.school.controller.implementation.NewsController;
 import com.mjc.school.controller.utils.ScanUtils;
 import com.mjc.school.service.dto.NewsDtoRequest;
-import com.mjc.school.service.dto.NewsDtoResponse;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@AllArgsConstructor
+@Component
 public class NewsControllerInvoker {
 
-    private final BaseController<NewsDtoRequest, NewsDtoResponse, Long> controller;
-    private final Scanner scanner;
+    private final NewsController controller;
+    private final Scanner scanner = new Scanner(System.in);
+
+    @Autowired
+    public NewsControllerInvoker(NewsController controller) {
+        this.controller = controller;
+    }
 
     public void createNews() {
         System.out.println(MenuConstants.CREATE_NEWS_TEXT);
