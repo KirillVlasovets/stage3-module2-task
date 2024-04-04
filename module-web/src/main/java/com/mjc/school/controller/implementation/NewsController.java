@@ -1,9 +1,9 @@
 package com.mjc.school.controller.implementation;
 
 import com.mjc.school.controller.BaseController;
-import com.mjc.school.service.BaseService;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
+import com.mjc.school.service.implementation.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -12,10 +12,10 @@ import java.util.List;
 @Controller
 public class NewsController implements BaseController<NewsDtoRequest, NewsDtoResponse, Long> {
 
-    private final BaseService<NewsDtoRequest, NewsDtoResponse, Long> service;
+    private final NewsService service;
 
     @Autowired
-    public NewsController(BaseService<NewsDtoRequest, NewsDtoResponse, Long> service) {
+    public NewsController(NewsService service) {
         this.service = service;
     }
 

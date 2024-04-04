@@ -1,8 +1,8 @@
 package com.mjc.school.service.implementation;
 
-import com.mjc.school.repository.BaseRepository;
+import com.mjc.school.repository.implementation.AuthorRepository;
+import com.mjc.school.repository.implementation.NewsRepository;
 import com.mjc.school.repository.model.implementation.AuthorModel;
-import com.mjc.school.repository.model.implementation.NewsModel;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.annotation.ValidatingNews;
 import com.mjc.school.service.annotation.ValidatingNewsId;
@@ -19,11 +19,11 @@ import java.util.List;
 @Service
 public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse, Long> {
 
-    private final BaseRepository<NewsModel, Long> newsRepository;
-    private final BaseRepository<AuthorModel, Long> authorRepository;
+    private final NewsRepository newsRepository;
+    private final AuthorRepository authorRepository;
 
     @Autowired
-    public NewsService(BaseRepository<NewsModel, Long> newsRepository, BaseRepository<AuthorModel, Long> authorRepository) {
+    public NewsService(NewsRepository newsRepository, AuthorRepository authorRepository) {
         this.newsRepository = newsRepository;
         this.authorRepository = authorRepository;
     }

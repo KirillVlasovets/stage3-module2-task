@@ -1,7 +1,6 @@
 package com.mjc.school.service.implementation;
 
-import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.model.implementation.AuthorModel;
+import com.mjc.school.repository.implementation.AuthorRepository;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.annotation.ValidatingAuthor;
 import com.mjc.school.service.annotation.ValidatingAuthorId;
@@ -18,10 +17,10 @@ import java.util.List;
 @Service
 public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoResponse, Long> {
 
-    private final BaseRepository<AuthorModel, Long> repository;
+    private final AuthorRepository repository;
 
     @Autowired
-    public AuthorService(BaseRepository<AuthorModel, Long> repository) {
+    public AuthorService(AuthorRepository repository) {
         this.repository = repository;
     }
 
