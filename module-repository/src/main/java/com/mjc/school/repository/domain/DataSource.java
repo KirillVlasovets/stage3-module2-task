@@ -2,21 +2,17 @@ package com.mjc.school.repository.domain;
 
 import com.mjc.school.repository.model.implementation.AuthorModel;
 import com.mjc.school.repository.model.implementation.NewsModel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Component
 public class DataSource {
 
-    @Getter
-    @Setter
     private List<AuthorModel> authorList;
-    @Getter
-    @Setter
     private List<NewsModel> newsList;
     private static final String AUTHOR_FILE_NAME = "authors";
     private static final String NEWS_FILE_NAME = "news";
@@ -52,10 +48,11 @@ public class DataSource {
         int contentNumber = 0;
         Long id = 1L;
         List<String> contentList = new Utils().readFile(CONTENT_FILE_NAME);
-        for (String title : new Utils().readFile(NEWS_FILE_NAME)) {
+        List<String> titles = new Utils().readFile(NEWS_FILE_NAME);
+        for (int i = 0; i < 20; i++) {
             news.add(NewsModel.builder()
                     .id(id)
-                    .title(title)
+                    .title(titles.get(i))
                     .content(contentList.get(contentNumber))
                     .createDate(new Utils().getTime())
                     .lastUpdateDate(new Utils().getTime())
