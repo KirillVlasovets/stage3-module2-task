@@ -1,32 +1,28 @@
 package com.mjc.school.repository.model.implementation;
 
 import com.mjc.school.repository.model.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @AllArgsConstructor
 @Builder
-@Entity
-@Getter
+@Data
 @NoArgsConstructor
 public class NewsModel implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Setter
     private String title;
-    @Setter
     private String content;
-    @Setter
     private String createDate;
-    @Setter
     private String lastUpdateDate;
-    @Setter
     private Long authorId;
 
     @Override
