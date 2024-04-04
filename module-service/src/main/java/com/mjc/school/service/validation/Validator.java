@@ -60,18 +60,4 @@ public class Validator {
             throw new ValidatorException(Errors.INVALID_AUTHOR_NAME_LENGTH.getMessage());
         }
     }
-
-    public boolean validateId(String id) {
-        char[] chars = id.toCharArray();
-        int counter = 0;
-        if (chars[0] == '-') {
-            counter++;
-        }
-        for (char character : chars) {
-            if (Character.isDigit(character)) {
-                counter++;
-            }
-        }
-        return counter == chars.length;
-    }
 }

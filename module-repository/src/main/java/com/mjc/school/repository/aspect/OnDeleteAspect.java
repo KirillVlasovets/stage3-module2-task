@@ -1,7 +1,6 @@
 package com.mjc.school.repository.aspect;
 
-import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.model.implementation.NewsModel;
+import com.mjc.school.repository.implementation.NewsRepository;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class OnDeleteAspect {
 
-    private final BaseRepository<NewsModel, Long> newsRepository;
+    private final NewsRepository newsRepository;
 
     @Autowired
-    public OnDeleteAspect(BaseRepository<NewsModel, Long> newsRepository) {
+    public OnDeleteAspect(NewsRepository newsRepository) {
         this.newsRepository = newsRepository;
     }
 
