@@ -14,9 +14,9 @@ public class DataSource {
 
     private List<AuthorModel> authorList;
     private List<NewsModel> newsList;
-    private static final String AUTHOR_FILE_NAME = "authors";
-    private static final String NEWS_FILE_NAME = "news";
-    private static final String CONTENT_FILE_NAME = "content";
+    private static final String AUTHOR_FILE_NAME = "module-repository/src/main/resources/authors";
+    private static final String NEWS_FILE_NAME = "module-repository/src/main/resources/news";
+    private static final String CONTENT_FILE_NAME = "module-repository/src/main/resources/content";
 
     public DataSource() {
         this.authorList = initAuthorList();
