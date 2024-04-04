@@ -2,12 +2,15 @@ package com.mjc.school.controller.utils;
 
 import com.mjc.school.service.enums.Errors;
 import com.mjc.school.service.exception.IncorrectDataException;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class ScanUtils {
+    private final Scanner scanner = new Scanner(System.in);
 
-    public static Long getNextLong(Scanner scanner) {
+    public Long getNextLong() {
         try {
             return scanner.nextLong();
         } catch (Exception exception) {

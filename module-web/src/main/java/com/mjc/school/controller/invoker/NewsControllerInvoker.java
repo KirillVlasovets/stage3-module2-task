@@ -13,11 +13,12 @@ import java.util.Scanner;
 public class NewsControllerInvoker {
 
     private final NewsController controller;
-    private final Scanner scanner = new Scanner(System.in);
+    private final ScanUtils scanUtils;
 
     @Autowired
-    public NewsControllerInvoker(NewsController controller) {
+    public NewsControllerInvoker(NewsController controller, ScanUtils scanUtils) {
         this.controller = controller;
+        this.scanUtils = scanUtils;
     }
 
     public void createNews() {
@@ -33,13 +34,13 @@ public class NewsControllerInvoker {
     public void getNewsById() {
         System.out.println(MenuConstants.GET_NEWS_BY_ID_TEXT);
         System.out.println(MenuConstants.ENTER_NEWS_ID_TEXT);
-        System.out.println(controller.readById(ScanUtils.getNextLong(scanner)));
+        System.out.println(controller.readById(scanUtils.getNextLong()));
     }
 
     public void updateNews() {
         System.out.println(MenuConstants.UPDATE_NEWS_TEXT);
         System.out.println(MenuConstants.ENTER_NEWS_ID_TEXT);
-        Long id = ScanUtils.getNextLong(scanner);
+        Long id = scanUtils.getNextLong();
         NewsDtoRequest request = createRequestWithoutId();
         request.setId(id);
         System.out.println(controller.update(request));
@@ -48,17 +49,18 @@ public class NewsControllerInvoker {
     public void deleteNews() {
         System.out.println(MenuConstants.DELETE_NEWS_TEXT);
         System.out.println(MenuConstants.ENTER_NEWS_ID_TEXT);
-        Long id = ScanUtils.getNextLong(scanner);
+        Long id = scanUtils.getNextLong();
         System.out.println(controller.deleteById(id));
     }
 
     private NewsDtoRequest createRequestWithoutId() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println(MenuConstants.ENTER_TITLE_TEXT);
         String title = scanner.nextLine();
         System.out.println(MenuConstants.ENTER_CONTENT_TEXT);
         String content = scanner.nextLine();
         System.out.println(MenuConstants.ENTER_AUTHOR_ID_TEXT);
-        Long authorId = ScanUtils.getNextLong(scanner);
+        Long authorId = scanUtils.getNextLong();
         NewsDtoRequest request = new NewsDtoRequest();
         request.setTitle(title);
         request.setContent(content);
