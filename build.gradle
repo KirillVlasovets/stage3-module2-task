@@ -34,6 +34,9 @@ subprojects {
         implementation "javax.persistence:javax.persistence-api:2.2"
         implementation "org.mapstruct:mapstruct:1.5.5.Final"
         implementation "org.mapstruct:mapstruct-processor:1.5.5.Final"
+
+        implementation "org.aspectj:aspectjrt:1.9.7"
+        implementation "org.aspectj:aspectjweaver:1.9.7"
     }
     test {
         useJUnitPlatform()

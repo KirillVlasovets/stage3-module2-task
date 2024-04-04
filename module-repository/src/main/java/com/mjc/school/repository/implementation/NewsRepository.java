@@ -1,6 +1,7 @@
 package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.BaseRepository;
+import com.mjc.school.repository.annotation.OnDelete;
 import com.mjc.school.repository.domain.DataSource;
 import com.mjc.school.repository.domain.Utils;
 import com.mjc.school.repository.model.implementation.NewsModel;
@@ -54,6 +55,7 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
         return news;
     }
 
+    @OnDelete
     @Override
     public boolean deleteById(Long id) {
         List<NewsModel> allNews = readAll();

@@ -4,6 +4,8 @@ import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.model.implementation.AuthorModel;
 import com.mjc.school.repository.model.implementation.NewsModel;
 import com.mjc.school.service.BaseService;
+import com.mjc.school.service.annotation.ValidatingNews;
+import com.mjc.school.service.annotation.ValidatingNewsId;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.enums.Errors;
@@ -32,6 +34,7 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     }
 
     @Override
+    @ValidatingNewsId
     public NewsDtoResponse readById(Long id) {
         NewsDtoResponse response = NewsMapper.INSTANCE.newsModelToResponse(newsRepository.readById(id).get());
         checkNewsIdExists(response, id);
@@ -39,12 +42,14 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     }
 
     @Override
+    @ValidatingNews
     public NewsDtoResponse create(NewsDtoRequest createRequest) {
         checkAuthorIdExists(createRequest);
         return NewsMapper.INSTANCE.newsModelToResponse(newsRepository.create(NewsMapper.INSTANCE.newsRequestToModel(createRequest)));
     }
 
     @Override
+    @ValidatingNews
     public NewsDtoResponse update(NewsDtoRequest updateRequest) {
         NewsDtoResponse response = NewsMapper.INSTANCE.newsModelToResponse(newsRepository.update(NewsMapper.INSTANCE.newsRequestToModel(updateRequest)));
         checkNewsIdExists(response, updateRequest.getId());
@@ -52,6 +57,7 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     }
 
     @Override
+    @ValidatingNewsId
     public boolean deleteById(Long id) {
         if (!newsRepository.deleteById(id)) {
             Errors error = Errors.NEWS_NOT_FOUND_EXCEPTION;

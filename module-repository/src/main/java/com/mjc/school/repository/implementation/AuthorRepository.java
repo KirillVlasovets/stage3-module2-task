@@ -1,6 +1,7 @@
 package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.BaseRepository;
+import com.mjc.school.repository.annotation.OnDelete;
 import com.mjc.school.repository.domain.DataSource;
 import com.mjc.school.repository.model.implementation.AuthorModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
         return author;
     }
 
+    @OnDelete
     @Override
     public boolean deleteById(Long id) {
         List<AuthorModel> allAuthors = readAll();

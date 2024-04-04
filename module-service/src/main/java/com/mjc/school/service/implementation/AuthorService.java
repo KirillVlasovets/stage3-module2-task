@@ -3,6 +3,8 @@ package com.mjc.school.service.implementation;
 import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.model.implementation.AuthorModel;
 import com.mjc.school.service.BaseService;
+import com.mjc.school.service.annotation.ValidatingAuthor;
+import com.mjc.school.service.annotation.ValidatingAuthorId;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.AuthorDtoResponse;
 import com.mjc.school.service.enums.Errors;
@@ -29,6 +31,7 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
     }
 
     @Override
+    @ValidatingAuthorId
     public AuthorDtoResponse readById(Long id) {
         AuthorDtoResponse response = AuthorMapper.INSTANCE.authorModelToResponse(repository.readById(id).get());
         checkAuthorIdExists(response, id);
@@ -36,11 +39,13 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
     }
 
     @Override
+    @ValidatingAuthor
     public AuthorDtoResponse create(AuthorDtoRequest createRequest) {
         return AuthorMapper.INSTANCE.authorModelToResponse(repository.create(AuthorMapper.INSTANCE.authorRequestToModel(createRequest)));
     }
 
     @Override
+    @ValidatingAuthor
     public AuthorDtoResponse update(AuthorDtoRequest updateRequest) {
         AuthorDtoResponse response = AuthorMapper.INSTANCE.authorModelToResponse(repository.update(AuthorMapper.INSTANCE.authorRequestToModel(updateRequest)));
         checkAuthorIdExists(response, updateRequest.getId());
@@ -48,6 +53,7 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
     }
 
     @Override
+    @ValidatingAuthorId
     public boolean deleteById(Long id) {
         if (!repository.deleteById(id)) {
             Errors error = Errors.AUTHOR_NOT_FOUND_EXCEPTION;
